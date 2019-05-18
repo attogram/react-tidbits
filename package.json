@@ -1,0 +1,12 @@
+{
+  "name": "react-tidbits",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/attogram/react-tidbits"
+  },
+  "dependencies": {
+    "react": "^16.8.6"
+  }
+}

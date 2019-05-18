@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>react-tidbits</title>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<script src="../src/Tidbits.js"></script>
+</head>
+<body>
+
+<p>
+    Demo:
+    <a href="https://github.com/attogram/react-tidbits">react-tidbits</a>
+</p>
+
+<div id="demo"></div>
+
+<script type="text/babel">
+
+    const tidbits = [
+        "0: Welcome to react-tidbits",
+        "1: alpha beta gamma omega foo bar baz",
+        "2: beta gamma omega foo bar baz alpha",
+        "3: gamma omega foo bar baz alpha beta",
+        "4: omega foo bar baz alpha beta gamma",
+        "5: foo bar baz alpha beta gamma omega",
+        "6: bar baz alpha beta gamma omega foo",
+        "7: baz alpha beta gamma omega foo bar",
+    ];
+
+    const interval = 4000;
+
+    ReactDOM.render(
+        <Tidbits
+            interval={interval}
+            tidbits={tidbits}
+        />,
+        document.querySelector('#demo')
+    );
+
+</script>
+</body>
+</html>
