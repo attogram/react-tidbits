@@ -6,7 +6,7 @@ A React component to display ever-changing text messages.
 
 # TODO
 
-* redo examples/ as React app
+* redo docs/ demo/examples as full React app
 * repackage for npm
 * publish to npm
 
