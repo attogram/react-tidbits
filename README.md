@@ -4,6 +4,8 @@ _Alpha Release_
 
 A React component to display ever-changing text messages.
 
+Demo: **<https://attogram.github.io/react-tidbits/>**
+
 # TODO
 
 * redo docs/ demo/examples as full React app
