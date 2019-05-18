@@ -34,5 +34,3 @@ licensed under the MIT license.
 Contributions welcome!
 
 * Main repo: **<https://github.com/attogram/react-tidbits>**
-
-
