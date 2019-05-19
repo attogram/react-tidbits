@@ -18,15 +18,20 @@
         #demo {
             border: 1px solid black;
             font-family: serif, "Times New Roman";
-            font-size: 150%;
+            font-size: 125%;
             padding: 40px;
+        }
+        #props, #version {
+            border: 1px solid grey;
+            font-family: monospace;
+            padding: 10px;
+        }
+        #version {
+            margin: 20px 0 0 0;
         }
         #props {
             background: #efefef;
-            border: 1px solid grey;
-            font-family: monospace;
-            margin: 30px 0 0 0;
-            padding: 10px;
+            margin: 20px 0 0 0;
         }
         #interval, #tidbits {
             display: inline;
@@ -36,6 +41,7 @@
 <body>
 <h1>Demo: <a href="https://github.com/attogram/react-tidbits">attogram/react-tidbits</a></h1>
 <div id="demo"></div>
+<div id="version"></div>
 <div id="props">
 
     Props:
@@ -47,7 +53,7 @@
     <br /><br />
     <label for="tidbits">tidbits =</label>
     <br />
-    <textarea id="tidbits" rows="10" cols="100">null</textarea>
+    <textarea id="tidbits" rows="20" cols="120">null</textarea>
 </div>
 <script type="text/babel">
     const tidbits = [
@@ -57,6 +63,7 @@
         "react-tidbits is an open source project, licensed under the MIT License.",
         "Find out more at: https://github.com/attogram/react-tidbits",
         "<b>TODO</b> allow HTML inside tidbits text!",
+        (<a href="https://github.com/attogram/react-tidbits">github.com/attogram/react-tidbits</a>),
     ];
 
     const interval = 4000;
@@ -71,7 +78,9 @@
 
     document.getElementById("interval").value = interval;
     document.getElementById("tidbits").innerHTML = JSON.stringify(tidbits, null, 2);
-
+    document.getElementById("version").innerHTML = ProjectName
+        + ' v' + ProjectVersion
+        + ' - <a href="' + ProjectHome + '">' + ProjectHome + '</a>';
 </script>
 </body>
 </html>

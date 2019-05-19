@@ -1,7 +1,7 @@
 'use strict';
 
 const ProjectName    = 'react-tidbits';
-const ProjectVersion = '0.0.2';
+const ProjectVersion = '0.0.3';
 const ProjectHome    = 'https://github.com/attogram/react-tidbits';
 
 const defaultInterval = 5000; // 5 seconds
@@ -12,7 +12,7 @@ class Tidbits extends React.Component {
         super(props);
         this.state = {
             current : 0,
-            debugMode: true,
+            debugMode: false,
             interval: this.props.interval ? this.props.interval : defaultInterval,
             tidbits : this.props.tidbits ? this.props.tidbits : defaultTidbits,
         };
