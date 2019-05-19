@@ -2,26 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>react-tidbits</title>
+    <title>Demo: attogram/react-tidbits</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="./Tidbits.js"></script>
+    <style>
+        body {
+            font-family: sans-serif, "Lucida Console";
+        }
+        a {
+            text-decoration: none;
+        }
+        #demo {
+            border: 1px solid black;
+            font-family: serif, "Times New Roman";
+            font-size: 120%;
+            padding: 20px;
+        }
+        #props {
+            border: 1px solid grey;
+            font-family: monospace;
+            margin: 10px 0 0 0;
+            padding: 10px;
+        }
+        #interval, #tidbits {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
-<p>
-    Demo:
-    <a href="https://github.com/attogram/react-tidbits">react-tidbits</a>
-</p>
-
+<h1>Demo: <a href="https://github.com/attogram/react-tidbits">attogram/react-tidbits</a></h1>
 <div id="demo"></div>
-
+<div id="props">
+    Props:
+    <br /><br />
+    interval = <div id="interval"></div>
+    <br /><br />
+    tidbits =
+    <br />
+    <textarea id="tidbits" rows="10" cols="100">null</textarea>
+</div>
 <script type="text/babel">
     const tidbits = [
-        "0: Welcome to react-tidbits.",
-        "1: react-tidbits shows ever-changing text messages.",
-        "2: Tidbits are defined in a simple javascript array.",
+        "Welcome to react-tidbits.",
+        "react-tidbits shows ever-changing text messages.",
+        "Tidbits are defined in a simple javascript array.",
+        "react-tidbits is an open source project, licensed under the MIT License.",
+        "Find out more at: https://github.com/attogram/react-tidbits",
+        "<b>TODO</b> allow HTML inside tidbits text!",
     ];
 
     const interval = 4000;
@@ -33,6 +63,10 @@
         />,
         document.querySelector('#demo')
     );
+
+    document.getElementById("interval").innerHTML = interval;
+    document.getElementById("tidbits").innerHTML = JSON.stringify(tidbits, null, 2);
+
 </script>
 </body>
 </html>
