@@ -18,13 +18,14 @@
         #demo {
             border: 1px solid black;
             font-family: serif, "Times New Roman";
-            font-size: 120%;
-            padding: 20px;
+            font-size: 150%;
+            padding: 40px;
         }
         #props {
+            background: #efefef;
             border: 1px solid grey;
             font-family: monospace;
-            margin: 10px 0 0 0;
+            margin: 30px 0 0 0;
             padding: 10px;
         }
         #interval, #tidbits {
@@ -36,11 +37,15 @@
 <h1>Demo: <a href="https://github.com/attogram/react-tidbits">attogram/react-tidbits</a></h1>
 <div id="demo"></div>
 <div id="props">
+
     Props:
+
     <br /><br />
-    interval = <div id="interval"></div>
+    <label for="interval">interval =</label>
+    <input id="interval" type="text" size="5" value=""> miliseconds
+
     <br /><br />
-    tidbits =
+    <label for="tidbits">tidbits =</label>
     <br />
     <textarea id="tidbits" rows="10" cols="100">null</textarea>
 </div>
@@ -64,7 +69,7 @@
         document.querySelector('#demo')
     );
 
-    document.getElementById("interval").innerHTML = interval;
+    document.getElementById("interval").value = interval;
     document.getElementById("tidbits").innerHTML = JSON.stringify(tidbits, null, 2);
 
 </script>
