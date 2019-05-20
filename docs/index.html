@@ -25,7 +25,6 @@
             padding: 40px;
         }
         #props, #debug {
-            border: 1px solid grey;
             font-family: monospace;
             padding: 10px;
         }
@@ -49,21 +48,15 @@
     </style>
 </head>
 <body>
-
 <h1>React Tidbits <span id="version">&nbsp;</span></h1>
-
 <h2>a component to show ever-changing content</h2>
-
 <br />
 Github: <a href="https://github.com/attogram/react-tidbits" target="_blank">attogram/react-tidbits</a>
-
 <br />
 License: MIT
-
 <br /><br />
 <i>Demo:</i>
 <div id="demo"></div>
-
 <br /><br />
 <i>Props:</i>
 <div id="props">
@@ -75,18 +68,50 @@ License: MIT
 <br /><br />
 <i>Debug:</i>
 <div id="debug">
-    <label for="interval">interval =</label>
-    <input id="interval" type="text" size="5" value=""> miliseconds
 
-    <br /><br />
+    <form>
+        <label for="interval">interval: </label>
+        <input id="interval" name="interval" type="text" size="5" value=""> miliseconds
+
+        <br />
+        current order: <span id="currentorder">&nbsp;</span>
+        <br />
+        <label for="order">new order: </label>
+        <select id="order" name="order">
+            <option>random</option>
+            <option>ordered</option>
+        </select>
+
+        <input type="submit" value=" update ">
+    </form>
+
+
+    <br />
     <label for="tidbits">tidbits =</label>
     <br />
     <textarea id="tidbits" rows="10" cols="40">null</textarea>
-</div>
 
+    <br /><br />
+    <a href="Tidbits.js">Tidbits.js</a>
+
+</div>
 <script type="text/babel">
 
-    const interval = 2000;
+    document.getElementById("version").innerHTML = 'v' + TidbitsVersion;
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    let interval = 2000;
+    if (urlParams.has('interval')) {
+        interval = urlParams.get('interval');
+    }
+    document.getElementById("interval").value = interval;
+
+    let order = 'ordered'; // random | ordered
+    if (urlParams.has('order')) {
+        order = urlParams.get('order');
+    }
+    document.getElementById("currentorder").innerHTML = order;
 
     const tidbits = [
         "Hello World 👋🌎",
@@ -101,13 +126,14 @@ License: MIT
         "TODO: ordered vs random.",
     ];
 
-    document.getElementById("interval").value = interval;
     document.getElementById("tidbits").innerHTML = JSON.stringify(tidbits, null, 2);
-    document.getElementById("version").innerHTML = 'v' + TidbitsVersion;
+
+
 
     ReactDOM.render(
         <Tidbits
             interval={interval}
+            order={order}
             tidbits={tidbits}
         />,
         document.querySelector('#demo')
