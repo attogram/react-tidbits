@@ -66,15 +66,12 @@ License: MIT
     <br /><br />
     <b>tidbits</b> = array of messages: "text strings" or (JSX).
 </div>
-
 <br /><br />
 <i>Debug:</i>
 <div id="debug">
-
     <form>
         <label for="interval">interval: </label>
         <input id="interval" name="interval" type="text" size="5" value=""> miliseconds
-
         <br />
         current order: <span id="currentorder">&nbsp;</span>
         <br />
@@ -83,38 +80,28 @@ License: MIT
             <option>random</option>
             <option>ordered</option>
         </select>
-
         <input type="submit" value=" update ">
     </form>
-
-
     <br />
     <label for="tidbits">tidbits =</label>
     <br />
     <textarea id="tidbits" rows="10" cols="40">null</textarea>
-
     <br /><br />
     <a href="Tidbits.js">Tidbits.js</a>
-
 </div>
 <script type="text/babel">
-
     document.getElementById("version").innerHTML = 'v' + TidbitsVersion;
-
     const urlParams = new URLSearchParams(window.location.search);
-
     let interval = 2000;
     if (urlParams.has('interval')) {
         interval = urlParams.get('interval');
     }
     document.getElementById("interval").value = interval;
-
     let order = 'ordered'; // random | ordered
     if (urlParams.has('order')) {
         order = urlParams.get('order');
     }
     document.getElementById("currentorder").innerHTML = order;
-
     const tidbits = [
         "Hello World 👋🌎",
         (<span>Welcome to <b>react-tidbits</b>.</span>),
@@ -125,13 +112,9 @@ License: MIT
         (<a href="https://github.com/attogram/react-tidbits" target="_blank">https://github.com/attogram/react-tidbits</a>),
         (<a href="https://github.com/attogram/react-tidbits" target="_blank">Contributions welcome!</a>),
         (<span>HTML inside tidbits? <b>JSX it!</b></span>),
-        "TODO: ordered vs random.",
+        "TODO: package up react-tidbits for npm and publish.",
     ];
-
     document.getElementById("tidbits").innerHTML = JSON.stringify(tidbits, null, 2);
-
-
-
     ReactDOM.render(
         <Tidbits
             interval={interval}
