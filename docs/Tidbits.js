@@ -1,56 +1,44 @@
+/**
+ * React Tidbits - show ever-changing text
+ *
+ * License: MIT
+ * Repository: https://github.com/attogram/react-tidbits
+ */
+
 'use strict';
 
-const ProjectName    = 'react-tidbits';
-const ProjectVersion = '0.0.3';
-const ProjectHome    = 'https://github.com/attogram/react-tidbits';
-
-const defaultInterval = 5000; // 5 seconds
-const defaultTidbits = ['404 Tidbits Not Found', 'Tidbits Missing', '?'];
+const TidbitsVersion = '0.0.4';
 
 class Tidbits extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             current : 0,
-            debugMode: false,
-            interval: this.props.interval ? this.props.interval : defaultInterval,
-            tidbits : this.props.tidbits ? this.props.tidbits : defaultTidbits,
+            interval: this.props.interval
+                ? this.props.interval
+                : 5000,
+            tidbits : this.props.tidbits
+                ? this.props.tidbits
+                : ['404 Tidbits Not Found'],
         };
-        this.debug = this.debug.bind(this);
-        this.debug('constructor: ' + ProjectName + ' v' + ProjectVersion + ' <' + ProjectHome + '>');
-        this.debug('constructor: this.state: ' + JSON.stringify(this.state));
-        this.debug('constructor: tidbits.length: ' + this.state.tidbits.length);
         this.tick = this.tick.bind(this);
     }
 
     componentDidMount() {
-        this.debug('componentDidMount: setInterval: timer: ' + this.state.interval);
         this.timer = setInterval(this.tick, this.state.interval);
-        this.tick();
     }
 
     componentWillUnmount() {
-        this.debug('componentWillUnmount: clearInterval: timer');
         clearInterval(this.timer);
     }
 
     tick() {
-        const current = Math.floor(Math.random() * (this.state.tidbits.length));
-        this.debug('tick: current: ' + current);
         this.setState({
-            current: current,
+            current: Math.floor(Math.random() * (this.state.tidbits.length)),
         });
     }
 
     render() {
-        const currentTidbit = this.state.tidbits[this.state.current];
-        this.debug('render: currentTidbit: ' + currentTidbit);
-        return currentTidbit;
+        return this.state.tidbits[this.state.current];
     }
-
-    debug(message) {
-        if (this.state.debugMode) {
-            console.log('Tidbits.js: ' + (new Date()).toISOString() + ': ' + message);
-        }
-    };
 }
