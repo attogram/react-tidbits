@@ -1,4 +1,8 @@
-# react-tidbits
+# React Tidbits
+
+[![react-tidbits](https://raw.githubusercontent.com/attogram/attogram-docs/master/react-tidbits/react-tidbits.160.png)](https://github.com/attogram/react-tidbits)
+
+_a React component to show ever-changing content._
 
 Demo: **<https://attogram.github.io/react-tidbits/>**
 
