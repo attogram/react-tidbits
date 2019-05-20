@@ -27,7 +27,7 @@
 
 'use strict';
 
-const TidbitsVersion = '0.0.6';
+const TidbitsVersion = '0.0.7';
 
 class Tidbits extends React.Component {
     constructor(props) {
@@ -51,20 +51,22 @@ class Tidbits extends React.Component {
 
     tick() {
         let next;
+        console.log('order=' + this.state.order);
+
         switch (this.state.order) {
             default:
+            case 'ordered':
+                if (this.state.current >= (this.state.tidbits.length - 1)) {
+                    next = 0;
+                } else {
+                    next = this.state.current + 1;
+                }
+                break;
             case 'random':
                 next = Math.floor(Math.random() * (this.state.tidbits.length));
                 break;
-            case 'ordered':
-                if (this.state.current === this.state.tidbits.length) {
-                    next = 0;
-                    break;
-                }
-                next = this.state.current + 1;
-                break;
         }
-
+        console.log('next = ' + next);
         this.setState({
             current: next
         });
