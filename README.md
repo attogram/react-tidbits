@@ -13,6 +13,9 @@ Demo: **<https://attogram.github.io/react-tidbits/>**
  *   // interval = milliseconds between changes. 1000 milliseconds = 1 second.
  *   const interval = 2000;
  *
+ *   // order = "ordered" (default) or "random"
+ *   const order = "random";
+ *
  *   // tidbits = an array of message, text strings or JSX
  *   const tidbits = [
  *      "Text message",
@@ -21,6 +24,7 @@ Demo: **<https://attogram.github.io/react-tidbits/>**
  *
  *   <Tidbits
  *      interval={interval}
+ *      order={order}
  *      tidbits={tidbits}
  *   />
  *
