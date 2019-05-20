@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>React Tidbits - a component to show ever-changing text</title>
+    <title>React Tidbits - a component to show ever-changing content</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
@@ -24,14 +24,10 @@
             font-size: 125%;
             padding: 40px;
         }
-        #props {
+        #props, #debug {
             border: 1px solid grey;
             font-family: monospace;
             padding: 10px;
-        }
-        #props {
-            background: #efefef;
-            margin: 20px 0 0 0;
         }
         #interval, #tidbits {
             display: inline;
@@ -53,21 +49,32 @@
     </style>
 </head>
 <body>
+
 <h1>React Tidbits <span id="version">&nbsp;</span></h1>
-<h2>a component to show ever-changing text</h2>
+
+<h2>a component to show ever-changing content</h2>
+
 <br />
 Github: <a href="https://github.com/attogram/react-tidbits" target="_blank">attogram/react-tidbits</a>
+
 <br />
 License: MIT
-<br />
-<br />
+
+<br /><br />
 <i>Demo:</i>
 <div id="demo"></div>
 
+<br /><br />
+<i>Props:</i>
 <div id="props">
-    Props:
-
+    <b>interval</b> = milliseconds between changes. 1000 milliseconds = 1 second.
     <br /><br />
+    <b>tidbits</b> = array of messages: "text strings" or (JSX).
+</div>
+
+<br /><br />
+<i>Debug:</i>
+<div id="debug">
     <label for="interval">interval =</label>
     <input id="interval" type="text" size="5" value=""> miliseconds
 
@@ -76,9 +83,13 @@ License: MIT
     <br />
     <textarea id="tidbits" rows="10" cols="40">null</textarea>
 </div>
+
 <script type="text/babel">
+
+    const interval = 2000;
+
     const tidbits = [
-        "Hello World.",
+        "Hello World 👋🌎",
         (<span>Welcome to <b>react-tidbits</b>.</span>),
         "react-tidbits shows ever-changing text messages.",
         "Tidbits are defined in a javascript array.",
@@ -90,7 +101,9 @@ License: MIT
         "TODO: ordered vs random.",
     ];
 
-    const interval = 2000;
+    document.getElementById("interval").value = interval;
+    document.getElementById("tidbits").innerHTML = JSON.stringify(tidbits, null, 2);
+    document.getElementById("version").innerHTML = 'v' + TidbitsVersion;
 
     ReactDOM.render(
         <Tidbits
@@ -99,10 +112,6 @@ License: MIT
         />,
         document.querySelector('#demo')
     );
-
-    document.getElementById("interval").value = interval;
-    document.getElementById("tidbits").innerHTML = JSON.stringify(tidbits, null, 2);
-    document.getElementById("version").innerHTML = 'v' + TidbitsVersion;
 </script>
 </body>
 </html>
