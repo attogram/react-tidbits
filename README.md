@@ -2,29 +2,38 @@
 
 _Alpha Release_
 
-A React component to display ever-changing text messages.
-
 Demo: **<https://attogram.github.io/react-tidbits/>**
+
+```javascript
+/**
+ * React Tidbits - show ever-changing content
+ *
+ *   example:
+ *
+ *   // interval = milliseconds between changes. 1000 milliseconds = 1 second.
+ *   const interval = 2000;
+ *
+ *   // tidbits = an array of message, text strings or JSX
+ *   const tidbits = [
+ *      "Text message",
+ *      (<span><b>JSX</b> message</span>),
+ *   ];
+ *
+ *   <Tidbits
+ *      interval={interval}
+ *      tidbits={tidbits}
+ *   />
+ *
+ * License: MIT
+ * Repository: https://github.com/attogram/react-tidbits
+ */
+```
 
 # TODO
 
 * redo docs/ demo/examples as full React app
 * repackage for npm
 * publish to npm
-
-# Usage
-
-```jsx harmony
-const tidbits = [
-  "array of tidbits",
-  "another tidbit",  
-];
-
-<Tidbits
-    interval="2000" // milliseconds
-    tidbits={tidbits}
-/>
-```
 
 # License
 
