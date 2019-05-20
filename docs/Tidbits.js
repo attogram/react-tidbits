@@ -3,10 +3,10 @@
  *
  *   example:
  *
- *   // interval = milliseconds between changes. 1000 milliseconds = 1 second.
+ *   // interval = milliseconds between changes. 1000 milliseconds = 1 second
  *   const interval = 2000;
  *
- *   // order = "ordered" (default) or "random"
+ *   // order = "ordered" or "random".  Optional, default is "ordered"
  *   const order = "random";
  *
  *   // tidbits = an array of message, text strings or JSX
@@ -27,7 +27,7 @@
 
 'use strict';
 
-const TidbitsVersion = '0.0.7';
+const TidbitsVersion = '0.0.8';
 
 class Tidbits extends React.Component {
     constructor(props) {
@@ -51,8 +51,6 @@ class Tidbits extends React.Component {
 
     tick() {
         let next;
-        console.log('order=' + this.state.order);
-
         switch (this.state.order) {
             default:
             case 'ordered':
@@ -66,7 +64,6 @@ class Tidbits extends React.Component {
                 next = Math.floor(Math.random() * (this.state.tidbits.length));
                 break;
         }
-        console.log('next = ' + next);
         this.setState({
             current: next
         });

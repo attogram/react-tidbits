@@ -1,7 +1,5 @@
 # react-tidbits
 
-_Alpha Release_
-
 Demo: **<https://attogram.github.io/react-tidbits/>**
 
 ```javascript
@@ -10,10 +8,10 @@ Demo: **<https://attogram.github.io/react-tidbits/>**
  *
  *   example:
  *
- *   // interval = milliseconds between changes. 1000 milliseconds = 1 second.
+ *   // interval = milliseconds between changes. 1000 milliseconds = 1 second
  *   const interval = 2000;
  *
- *   // order = "ordered" (default) or "random"
+ *   // order = "ordered" or "random".  Optional, default is "ordered"
  *   const order = "random";
  *
  *   // tidbits = an array of message, text strings or JSX
@@ -35,14 +33,12 @@ Demo: **<https://attogram.github.io/react-tidbits/>**
 
 # TODO
 
-* redo docs/ demo/examples as full React app
 * repackage for npm
 * publish to npm
 
 # License
 
-**react-tidbits** is an open source project
-licensed under the MIT license.
+**react-tidbits** is an open source project licensed under the MIT license.
 
 # Developer Info
 
