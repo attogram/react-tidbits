@@ -9,6 +9,9 @@
  *   // order = "ordered" or "random".  Optional, default is "ordered"
  *   const order = "random";
  *
+ *   // pauseOnHover = pause rotation when mouse is over content. Optional, default is true
+ *   const pauseOnHover = true;
+ *
  *   // tidbits = an array of message, text strings or JSX
  *   const tidbits = [
  *      "Text message",
@@ -18,6 +21,7 @@
  *   <Tidbits
  *      interval={interval}
  *      order={order}
+ *      pauseOnHover={pauseOnHover}
  *      tidbits={tidbits}
  *   />
  *
@@ -27,26 +31,58 @@
 
 'use strict';
 
-const TidbitsVersion = '0.0.8';
+const TidbitsVersion = '0.0.9';
 
 class Tidbits extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            current : 0,
+            current: 0,
             interval: this.props.interval ? this.props.interval : 5000,
             order: this.props.order ? this.props.order : 'ordered',
-            tidbits : this.props.tidbits ? this.props.tidbits : ['404 Tidbits Not Found'],
+            tidbits: this.props.tidbits ? this.props.tidbits : ['404 Tidbits Not Found'],
+            isPaused: false
         };
         this.tick = this.tick.bind(this);
+        this.handleMouseEnter = this.handleMouseEnter.bind(this);
+        this.handleMouseLeave = this.handleMouseLeave.bind(this);
+        this.startTimer = this.startTimer.bind(this);
+        this.stopTimer = this.stopTimer.bind(this);
     }
 
     componentDidMount() {
-        this.timer = setInterval(this.tick, this.state.interval);
+        this.startTimer();
     }
 
     componentWillUnmount() {
-        clearInterval(this.timer);
+        this.stopTimer();
+    }
+
+    startTimer() {
+        if (!this.timer) {
+            this.timer = setInterval(this.tick, this.state.interval);
+        }
+    }
+
+    stopTimer() {
+        if (this.timer) {
+            clearInterval(this.timer);
+            this.timer = null;
+        }
+    }
+
+    handleMouseEnter() {
+        if (this.props.pauseOnHover !== false) {
+            this.setState({ isPaused: true });
+            this.stopTimer();
+        }
+    }
+
+    handleMouseLeave() {
+        if (this.props.pauseOnHover !== false) {
+            this.setState({ isPaused: false });
+            this.startTimer();
+        }
     }
 
     tick() {
@@ -70,6 +106,33 @@ class Tidbits extends React.Component {
     }
 
     render() {
-        return this.state.tidbits[this.state.current];
+        const containerStyle = {
+            cursor: this.props.pauseOnHover !== false ? 'pointer' : 'default',
+            position: 'relative',
+            display: 'inline-block'
+        };
+
+        const pauseIndicatorStyle = {
+            position: 'absolute',
+            top: '5px',
+            right: '5px',
+            padding: '2px 6px',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            color: 'white',
+            borderRadius: '3px',
+            fontSize: '12px',
+            display: this.state.isPaused ? 'block' : 'none'
+        };
+
+        return (
+            <div 
+                style={containerStyle}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
+            >
+                {this.state.tidbits[this.state.current]}
+                <span style={pauseIndicatorStyle}>Paused</span>
+            </div>
+        );
     }
 }
