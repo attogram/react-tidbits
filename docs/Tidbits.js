@@ -31,7 +31,7 @@
 
 'use strict';
 
-const TidbitsVersion = '0.0.9';
+const TidbitsVersion = '0.0.10';
 
 class Tidbits extends React.Component {
     constructor(props) {
@@ -115,13 +115,15 @@ class Tidbits extends React.Component {
         const pauseIndicatorStyle = {
             position: 'absolute',
             top: '5px',
-            right: '5px',
+            right: '0',              // Changed from '5px' to '0'
             padding: '2px 6px',
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
             color: 'white',
             borderRadius: '3px',
-            fontSize: '12px',
-            display: this.state.isPaused ? 'block' : 'none'
+            fontSize: '16px',        // Increased from '12px' for better icon visibility
+            display: this.state.isPaused ? 'block' : 'none',
+            lineHeight: 1,           // Added for better vertical alignment
+            userSelect: 'none'       // Prevent text selection of the icon
         };
 
         return (
@@ -131,7 +133,7 @@ class Tidbits extends React.Component {
                 onMouseLeave={this.handleMouseLeave}
             >
                 {this.state.tidbits[this.state.current]}
-                <span style={pauseIndicatorStyle}>Paused</span>
+                <span style={pauseIndicatorStyle}>⏸️</span>
             </div>
         );
     }
